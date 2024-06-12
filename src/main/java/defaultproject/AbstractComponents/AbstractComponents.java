@@ -24,23 +24,6 @@ public class AbstractComponents {
 	@FindBy(css = "[routerlink*='cart']")
 	WebElement cartButton;
 	
-	@FindBy(css = "[routerlink='/dashboard/']")
-	WebElement homeButton;
-	
-	@FindBy(css = "[routerlink*='myorders']")
-	WebElement ordersButton;
-	
-	@FindBy(xpath = "//button/i[@class='fa fa-sign-out']")
-	WebElement signOutButton;
-	
-	@FindBy(css=".btnn.action__submit.ng-star-inserted")
-	WebElement placeOrderBtn;
-
-	
-	@FindBy(css="li[class='totalRow'] button[type='button']")
-	WebElement checkOutBtn;
-	
-	
 	public void waitForElementToAppear(By findBy) {
 		WebDriverWait waitAppear = new WebDriverWait(driver, Duration.ofSeconds(5));
 		waitAppear.until(ExpectedConditions.visibilityOfElementLocated(findBy));
@@ -49,6 +32,11 @@ public class AbstractComponents {
 	public void waitForElementToDisappear(WebElement ele) {
 		WebDriverWait waitDisappear = new WebDriverWait(driver, Duration.ofSeconds(5));
 		waitDisappear.until(ExpectedConditions.invisibilityOf(ele));
+	}
+	
+	public void waitForTextToAppear(By ele, String text) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.textToBePresentInElementLocated(ele, text));
 	}
 	
 	/*
